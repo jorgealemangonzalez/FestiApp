@@ -1,0 +1,4 @@
+ssh root@188.166.119.111 -> conectar a Digitalocean
+iniciar servidor node : forever start server.js --- para parar stop
+reiniciar el servidor : forever restartall
+ver log		      : forever logs server.js
