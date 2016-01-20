@@ -12,25 +12,7 @@
         </div>         
       </div>    
       
-         
-      
-      
-    <table style="width:100%">
-      <tr style="width:100%;border:none;">
-        <td class="padding" style="width:50%">
-          <a class="button button-block button-positive" href="#/tab_festi/mercado/anadir">
-            Compro
-          </a>
-        </td>
-        <td class="padding" style="width:50%">
-          <button class="button button-block button-positive">
-            Vendo
-          </button>
-        </td>
-      </tr>
-    </table>
-
-    <div class="list card" data-ng-repeat = "notice in notices | filter: search ">
+    <div class="list card" data-ng-repeat = "notice in notices "> <!-- filter : search -->
             <ion-item class=" item-avatar item-icon-right" type="item-text-wrap"  ng-click="changeOpen(notice)">
                 <img ng-src="./img/{{notice.type}}.png">
                 <h2>{{notice.title}}</h2>
