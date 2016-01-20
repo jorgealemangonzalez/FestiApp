@@ -96,7 +96,7 @@ angular.module('starter.controllerjorge', ['ngMap'])
     
 })
 
-.controller('mercadoCtrl', function($scope,$localStorage,$location,$ionicModal,$rootScope,socket) {
+.controller('mercadoCtrl', function($scope,$localStorage,$location,$ionicModal,$rootScope,$state) {
     $scope.festi = $localStorage.currentfesti;
     $scope.notices = $rootScope.notices;
     console.log($scope.notices);
@@ -142,6 +142,9 @@ angular.module('starter.controllerjorge', ['ngMap'])
         for( x in $scope.notices.id){
             
         }
+    };
+    $scope.anadir = function(){
+        $state.go('tab_festi.mercado_anadir');
     };
 })
 ;
