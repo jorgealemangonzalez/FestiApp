@@ -98,7 +98,7 @@ chatDB.send({userNick: "jorge",text: "hola que tal",time: new Date(1,1,1)},"vina
 */
 var marketDB = {
     getAll : function(festiyear,callback){
-        mongoose.model('Annonce',noticeSchema,'market'+festiyear).find({},"-images").limit(100).exec(function(err,docs){
+        mongoose.model('Annonce',noticeSchema,'market'+festiyear).find({}).select({'images': 0}).limit(100).exec(function(err,docs){
             if(err)console.log(err);
             else{
                 callback(docs);
