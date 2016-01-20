@@ -106,7 +106,8 @@ angular.module('starter.controllerjorge', ['ngMap'])
             console.log(notice); 
             socket.emit('get market images',notice._id);
             socket.on('get market images',function(images){
-                notice.images = images;
+                console.log(images);
+                notice.images = images.images;
                 notice.open = !notice.open; 
             });
         }else notice.open = !notice.open; 
