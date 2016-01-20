@@ -188,6 +188,7 @@ io.on('connection', function (socket) {
       });
   });
   socket.on('get market images',function(id){//id del anuncio
+      console.log("getting images of",id);
       marketDB.getImages(id,socket.room,function(images){
           console.log("User obtaining images: "+images);
           socket.emit('get market images',images);
