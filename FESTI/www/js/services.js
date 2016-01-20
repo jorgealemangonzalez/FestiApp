@@ -136,16 +136,6 @@ angular.module('starter.services', ['ngResource'])
         }
       };
     })
-    .factory('market',function($http,$resource){//-Hacer otra tabla 
-      return{
-        all: function(festi,year){
-          return $http.get('https://api.mongolab.com/api/1/databases/vacadb/collections/market'+festi+year+'?apiKey=k_Np4N_hIzq6W9bPDFyRHpvcpyq275Td');
-        },
-        new_one: function(anuncio,festi,year){
-          return $http.post('https://api.mongolab.com/api/1/databases/vacadb/collections/market'+festi+year+'?apiKey=k_Np4N_hIzq6W9bPDFyRHpvcpyq275Td',anuncio);
-        }
-      }
-    })
     .factory('Camera',function($cordovaCamera){
         return{
            uploadfromcamera: function(images){

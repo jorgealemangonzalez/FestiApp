@@ -5,15 +5,18 @@
 //openshift:    https://www.youtube.com/watch?v=wnRtA7a0ST0
 
 angular.module('starter.controllers', ['ngMap'])//DESCARGAR LOS FICHEROS QUE COGE DE INTERNET VER EN NETBEANS REMOTE FILES
-.controller('tabsfestiCtrl', function($scope,$state,socket){
+.controller('tabsfestiCtrl', function($scope,$state,socket,$rootScope){
     $scope.exit = function(){
         console.log("Lets leave the festi");
         socket.emit('leave room');
         $state.go("tab_ini.mis-festis");
     } ;
+    socket.on('new annonce',function(annonce){
+        $rootScope.notices.unshift(annonce);
+    });
 })
 
-.controller('mis-festisCtrl', function($scope,$localStorage,$state,Festivales,socket) { 
+.controller('mis-festisCtrl', function($scope,$localStorage,$state,Festivales,socket,$rootScope) { 
     
   //Entramos en la room en cuanto entramos en un festival
   $scope.clear = function(){
@@ -45,7 +48,12 @@ angular.module('starter.controllers', ['ngMap'])//DESCARGAR LOS FICHEROS QUE COG
         $localStorage.currentfesti = $localStorage.f[i];
         $localStorage.id = i ;
         socket.emit('join room',room);
-        $state.go("tab_festi.cerca");
+        socket.emit('get annonces');
+        socket.on('get annonces',function(annonces){
+            $rootScope.notices = annonces;
+            console.log(annonces+"from enter_festi");
+            $state.go("tab_festi.cerca");
+        });
   };
   socket.on('add user',function(id){
     console.log(id);
@@ -193,7 +201,7 @@ angular.module('starter.controllers', ['ngMap'])//DESCARGAR LOS FICHEROS QUE COG
     });
 })
 
-.controller('mercadoAnadirCtrl',function($scope,$localStorage,market,$state,$cordovaGeolocation,Camera,socket){ // he quitado $cordovaCamera ( parece qu eno se usa
+.controller('mercadoAnadirCtrl',function($scope,$localStorage,$state,$cordovaGeolocation,Camera,socket){ // he quitado $cordovaCamera ( parece qu eno se usa
     $scope.festi = $localStorage.currentfesti;
     $scope.id = $localStorage.user.id;
     $scope.notice_send = {
@@ -206,10 +214,10 @@ angular.module('starter.controllers', ['ngMap'])//DESCARGAR LOS FICHEROS QUE COG
     };
     $scope.uploadfromcamera = function(){
         Camera.uploadfromcamera($scope.notice_send.images);
-    }
+    };
     $scope.uploadfromlibrary = function(){
       Camera.uploadfromlibrary($scope.notice_send.images);
-    }
+    };
     var posOptions = {timeout: 10000, enableHighAccuracy: false};
     $cordovaGeolocation
           .getCurrentPosition(posOptions)
@@ -217,7 +225,7 @@ angular.module('starter.controllers', ['ngMap'])//DESCARGAR LOS FICHEROS QUE COG
             $scope.mypos = {
               lat: position.coords.latitude,
               lng: position.coords.longitude
-            }
+            };
             mymarker = new google.maps.Marker({
               position: new google.maps.LatLng($scope.mypos.lat,$scope.mypos.lng),
               map: $scope.map,
@@ -233,18 +241,17 @@ angular.module('starter.controllers', ['ngMap'])//DESCARGAR LOS FICHEROS QUE COG
             $scope.notice_send.location = {
               lat: position.coords.latitude,
               lng: position.coords.longitude
-            }
+            };
           }, function(err) {
             console.log("GeolocationErr: "+err);
           });
-      }
+      };
     $scope.posMe();
 
     $scope.enviar = function(){
-      market.new_one($scope.notice_send,$scope.festi.festi,$scope.festi.year);
       socket.emit('new annonce',$scope.notice_send);
       $state.go("tab_festi.mercado");
-    }
+    };
 })
 .controller('eventosCtrl', function($scope,$localStorage) {
   $scope.festi = $localStorage.currentfesti;
