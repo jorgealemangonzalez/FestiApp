@@ -120,7 +120,7 @@ var marketDB = {
         mongoose.model('Annonce',noticeSchema,'market'+festiyear).find({_id:id}).select({'images':1}).limit(100).exec(function(err,docs){
             if(err)console.log(err);
             else{
-                console.log("Images from database: "+docs);
+                console.log("Images from database: "+docs.images);
                 callback(docs.images);
             }
         });
