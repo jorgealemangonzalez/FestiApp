@@ -120,8 +120,7 @@ var marketDB = {
         mongoose.model('Annonce',noticeSchema,'market'+festiyear).find({_id:id}).select({'images':1}).limit(100).exec(function(err,docs){
             if(err)console.log(err);
             else{
-                console.log("Images from database: "+docs);
-                callback(docs);
+                callback(docs[0].images);
             }
         });
     }
@@ -190,7 +189,6 @@ io.on('connection', function (socket) {
   socket.on('get market images',function(id){//id del anuncio
       console.log("getting images of",id);
       marketDB.getImages(id,socket.room,function(images){
-          console.log("User obtaining images: "+images);
           socket.emit('get market images',images);
       });
   });
