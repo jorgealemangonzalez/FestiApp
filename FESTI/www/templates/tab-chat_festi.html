@@ -1,0 +1,67 @@
+
+<!--
+  https://www.airpair.com/ionic-framework/posts/ionic-socketio-chat-application-tutorial
+  http://forum.ionicframework.com/t/how-to-interact-ionic-framework-with-server-side-interactions-like-we-do-it-in-mean-stack-app/21872/2
+-->
+<ion-view view-title="{{festi.festi}}">
+  
+    <ion-content has-bouncing="true" class="has-header has-footer" >
+            
+              <div ng-repeat="mensaje in mensajes" class="message-wrapper">
+      
+                  <div ng-if="myNick !== mensaje.userNick">
+                            
+                      <div class="chat-bubble left">
+                          
+                          <div class="message">
+                              <b>
+                              {{mensaje.userNick}} :
+                              </b>
+                              <div class="message-detail">{{mensaje.text}}
+                              </div>
+                          <span am-time-ago="mensaje.time" style="color:blue;font-size: 0.8em;float:left"></span>
+                          </div>     
+                            
+                      </div>
+                  </div>
+      
+                  <div ng-if="myNick === mensaje.userNick">
+                    
+                       
+                      <div class="chat-bubble right">      
+                          <div class="message-detail">{{mensaje.text}}</div>
+                          <span am-time-ago="mensaje.time" style="color:black;font-size: 0.8em;float:right"></span>
+                      </div>
+                    
+                  </div>
+      
+                  <div class="cf"></div>
+      
+              </div>
+          </ion-content>
+ <!--   
+    <ion-pane >
+    <ion-content class="content-stable"
+                 on-swipe-left="hideTime = false"
+                 on-swipe-right="hideTime = true">
+
+      <div ng-repeat="mensaje in mensajes"
+           ng-class="{other: mensaje.userNick === myNick}"
+           class="messages">
+
+        <div class="message" ng-class="{'slide-right': hideTime, '': !hideTime}">
+          <span class="box_chat">{{ mensaje.text }}</span>
+        </div>
+
+        <div class="time" ng-class="{'slide-right': hideTime, '': !hideTime}">{{ mensaje.time }}</div>
+      </div>
+
+    </ion-content>
+-->
+    <ion-footer-bar keyboard-attach class="bar-stable item-input-inset"  >
+      <label class="item-input-wrapper">
+        <input type="text" placeholder="Escribir mensaje" on-return="enviar(); " ng-model="ms.text" on-focus="inputUp();scroll();" on-blur="inputDown();scroll();"/>
+      </label>
+    </ion-footer-bar>
+ <!-- </ion-pane>-->
+</ion-view>

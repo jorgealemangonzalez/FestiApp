@@ -1,0 +1,10 @@
+<ion-view ng-init="isLogged()" view-title="{{festi.festi}}">
+  <ion-content>
+    <div class="list list-inset light top180" >
+      <label class="item item-input linegrey" >
+        <input type="text" class="linegrey white" placeholder="What is your nickname?" ng-model="yo.nick" >
+      </label>
+      <a class="button button-block button-grey" href="" ng-click="joinchat(festi.festi+festi.year)">Join as {{yo.nick}}</a>
+    </div>
+  </ion-content>
+</ion-view>

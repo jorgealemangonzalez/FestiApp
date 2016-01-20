@@ -1,0 +1,32 @@
+<ion-view view-title="Mis conciertos">
+  <ion-content class="padding">
+
+    <a class="button button-block button-balanced icon-right ion-chevron-right" href="#/tab_ini/mis-festis/mis-festis-anadir">
+      Añadir Festival
+    </a>
+
+    <button class="button button-block button-balanced" ng-click="clear();window.location.reload(true)">
+      Clear localStorage
+    </button>
+
+    <div class="list card" ng-repeat="festi in misfestis">
+
+      <div class="item item-avatar">
+        <img src="{{festi.link_icono}}">
+        <h2>{{festi.festi}} - {{festi.lugar}} </h2>
+        <p>{{festi.fecha}}</p>
+      </div>
+
+      <div class="item item-image">
+        <img src="{{festi.link_cartel}}">
+      </div>
+
+      <a class="item item-icon-right assertive" ng-click="enter_festi(festi)">
+        <i class="icon ion-chevron-right"></i>
+        Entrar
+      </a>
+
+    </div>
+
+  </ion-content>
+</ion-view>
