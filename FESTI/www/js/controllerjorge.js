@@ -100,23 +100,25 @@ angular.module('starter.controllerjorge', ['ngMap'])
     $scope.festi = $localStorage.currentfesti;
     $scope.notices = $rootScope.notices;
     console.log($scope.notices);
-    $scope.changeOpen = function(notice){
-        if(notice.images == null){
-            console.log("Entra id :"+notice._id);
-            console.log(notice); 
-            socket.emit('get market images',notice._id);
+    $scope.changeOpen = function(index){
+        $scope.notice = $scope.notices[index];
+        if($scope.notice.images == null){
+            console.log("n");
+            
+            console.log($scope.notice);
+            socket.emit('get market images',$scope.notice._id);
             socket.on('get market images',function(images){
-                notice.images = images; 
-                notice.open = !notice.open; 
+                $scope.notice.images = images; 
+                $scope.notice.open = !$scope.notice.open; 
             });
-        }else notice.open = !notice.open; 
+        }else $scope.notice.open = !$scope.notice.open; 
         
     };
     
     //OPEN IMAGE
-    $scope.showImages = function(index,notice) { 
-        
-        $scope.allImages = notice.images;
+    $scope.showImages = function(index) { 
+        $scope.notice = $scope.notices[index];
+        $scope.allImages = $scope.notice.images;
         $scope.activeSlide = index;
         $scope.showModal('templates/image-popover.html');
     };
