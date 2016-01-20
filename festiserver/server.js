@@ -117,11 +117,11 @@ var marketDB = {
         });
     },
     getImages : function(id,festiyear,callback){
-        mongoose.model('Annonce',noticeSchema,'market'+festiyear).find({_id:id},"images").limit(100).exec(function(err,docs){
+        mongoose.model('Annonce',noticeSchema,'market'+festiyear).find({_id:id}).select({'images':1}).limit(100).exec(function(err,docs){
             if(err)console.log(err);
             else{
                 console.log("Images from database: "+docs);
-                callback(docs);
+                callback(docs.images);
             }
         });
     }
@@ -189,7 +189,7 @@ io.on('connection', function (socket) {
   });
   socket.on('get market images',function(id){//id del anuncio
       marketDB.getImages(id,socket.room,function(images){
-          console.log("User obtaining images");
+          console.log("User obtaining images: "+images);
           socket.emit('get market images',images);
       });
   });

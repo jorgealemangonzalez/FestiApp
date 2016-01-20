@@ -96,7 +96,7 @@ angular.module('starter.controllerjorge', ['ngMap'])
     
 })
 
-.controller('mercadoCtrl', function($scope,$localStorage,$location,$ionicModal,$rootScope,$state) {
+.controller('mercadoCtrl', function($scope,$localStorage,$location,$ionicModal,$rootScope,$state,socket) {
     $scope.festi = $localStorage.currentfesti;
     $scope.notices = $rootScope.notices;
     console.log($scope.notices);
@@ -106,9 +106,12 @@ angular.module('starter.controllerjorge', ['ngMap'])
     
     //OPEN IMAGE
     $scope.showImages = function(index,notice) { 
-        $scope.allImages = notice.images;
-        $scope.activeSlide = index;
-        $scope.showModal('templates/image-popover.html');
+        socket.emit('get market images',notice._id);
+        socket.on('get market images',function(images){
+            $scope.allImages = images;
+            $scope.activeSlide = index;
+            $scope.showModal('templates/image-popover.html');
+        })
     };
 
     $scope.showModal = function(templateUrl) {
@@ -134,6 +137,7 @@ angular.module('starter.controllerjorge', ['ngMap'])
     };
     $scope.open_options = function(){
         $scope.showModal('templates/mercado_options.html');
+        
     };
     $scope.filtrado = false;
     $scope.changefiltrado = function(){ $scope.filtrado = !$scope.filtrado ;};
@@ -146,5 +150,6 @@ angular.module('starter.controllerjorge', ['ngMap'])
     $scope.anadir = function(){
         $state.go('tab_festi.mercado_anadir');
     };
+    
 })
 ;
