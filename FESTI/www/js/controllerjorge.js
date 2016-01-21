@@ -151,20 +151,21 @@ angular.module('starter.controllerjorge', ['ngMap'])
     $scope.filtrado = false;
     $localStorage.filtrado_notice = false;
     $scope.changefiltrado = function(){ $scope.filtrado = !$scope.filtrado ;};
-    $scope.changefiltrado_notice = function(){ $localStorage.filtrado_notice = !$localStorage.filtrado_notice ;};
     
     $scope.anadir = function(){
         $state.go('tab_festi.mercado_anadir');
     };
+    $scope.mostrartodos = function(){
+        $localStorage.filtrado_notice = false;
+    }
     $scope.mynotice = function(){
-        $state.go('tab_festi.mercado');
+        $localStorage.filtrado_notice = true;
     };
     
 })
 .filter('ownnotice', function($localStorage){
   return function (arr) {
       return arr.filter(function(notice,index){
-          console.log(notice.creator_id);
           if( !$localStorage.filtrado_notice){
               return true;
           }else {
@@ -178,4 +179,3 @@ angular.module('starter.controllerjorge', ['ngMap'])
       })
   };
 });
-;
