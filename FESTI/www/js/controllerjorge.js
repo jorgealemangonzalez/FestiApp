@@ -1,4 +1,4 @@
-angular.module('starter.controllerjorge', ['ngMap'])
+angular.module('starter.controllerjorge', [])
 //HAY QUE CAMBIAR QUE NO CARGUE DESDE EL MAPA Y DESDE EL MARKET TODOS LOS PLACES DEL MARKET
 .controller('cercaCtrl', function($scope,$localStorage,$ionicLoading,$cordovaGeolocation,$state,$window,$rootScope,$location) {
     $scope.festi = $localStorage.currentfesti;

@@ -4,7 +4,7 @@
 //              https://github.com/socketio/socket.io/tree/master/examples/chat
 //openshift:    https://www.youtube.com/watch?v=wnRtA7a0ST0
 
-angular.module('starter.controllers', ['ngMap'])//DESCARGAR LOS FICHEROS QUE COGE DE INTERNET VER EN NETBEANS REMOTE FILES
+angular.module('starter.controllers', [])//DESCARGAR LOS FICHEROS QUE COGE DE INTERNET VER EN NETBEANS REMOTE FILES
 .controller('tabsfestiCtrl', function($scope,$state,socket,$rootScope){
     $scope.exit = function(){
         console.log("Lets leave the festi");

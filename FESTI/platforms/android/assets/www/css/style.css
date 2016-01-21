@@ -1,0 +1,177 @@
+/* Empty. Add your own CSS if you like */
+
+$stable:                          #f8f8f8 !default;
+
+.scroll {
+  padding: 10px 0 50px !important;
+}
+.messages {
+  display: -webkit-box !important;
+  display: -moz-box !important;
+  display: -ms-flexbox !important;
+  display: -webkit-flex !important;
+  display: flex !important;
+  -webkit-align-content: center !important;
+  -ms-flex-line-pack: center !important;
+  align-content: center !important;
+  -webkit-box-align: center !important;
+  -moz-box-align: center !important;
+  -webkit-align-items: center !important;
+  -ms-flex-align: center !important;
+  align-items: center !important;
+  margin-bottom: 20px !important;
+  .message {
+    -webkit-box-flex: 1 !important;
+    -moz-box-flex: 1 !important;
+    -webkit-flex: 1 1 auto !important;
+    -ms-flex: 1 1 auto !important;
+    flex: 1 1 auto !important;
+    padding: 10px !important;
+    -webkit-transition: all 250ms ease-in-out !important;
+    transition: all 250ms ease-in-out !important;
+    overflow: hidden !important;
+    text-align: left !important;
+    -webkit-transform: translate3d(0, 0, 0) !important;
+    -moz-transform: translate3d(0, 0, 0) !important;
+    transform: translate3d(0, 0, 0) !important;
+  }
+}
+.time {
+  -webkit-box-flex: 0 !important;
+  -moz-box-flex: 0 !important;
+  -webkit-flex: 0 1 auto !important;
+  -ms-flex: 0 1 auto !important;
+  flex: 0 1 auto !important;
+  -webkit-align-self: auto !important;
+  -ms-flex-item-align: auto !important;
+  align-self: auto !important;
+  width: 120px !important;
+  text-align: center !important;
+  padding: 0 0 0 0 !important;
+  -webkit-transition: all 250ms ease-in-out !important;
+  transition: all 250ms ease-in-out !important;
+  -webkit-transform: translate3d(10px, 0, 0) !important;
+  -moz-transform: translate3d(10px, 0, 0) !important;
+  transform: translate3d(10px, 0, 0) !important;
+  &.slide-right {
+    -webkit-transform: translate3d(130px, 0, 0) !important;
+    -moz-transform: translate3d(130px, 0, 0) !important;
+    transform: translate3d(130px, 0, 0) !important;
+  }
+}
+//This will change
+.messages.other {
+  .message {
+    -webkit-transform: translate3d(0, 0, 0) !important;
+    -moz-transform: translate3d(0, 0, 0) !important;
+    transform: translate3d(0, 0, 0) !important;
+    text-align: right !important;
+  }
+  .message.slide-right {
+    -webkit-transform: translate3d(120px, 0, 0) !important;
+    -moz-transform: translate3d(120px, 0, 0) !important;
+    transform: translate3d(120px, 0, 0) !important;
+  }
+  span {
+    color: black !important;
+    background-color: #C7C7CC !important;
+  }
+}
+
+.box_chat {
+  background: #007AFF !important;
+  display: inline-block !important;
+  color: white !important;
+  padding: 10px !important;
+  border-radius: 10px !important;
+  text-align: left !important;
+  max-width: 90% !important;
+}
+#map {
+  width: 100%;
+  height: 100%;
+  top:0px;
+  left:0px;
+  z-index:2;
+}
+
+.scroll {
+  height: 100%;
+}
+
+div#miposicion{
+  position:fixed;
+  z-index:99;
+  bottom:15px;
+}
+//Image views
+.image-list-thumb {
+    padding: 2px 2px 2px 2px;
+    height: 100px;
+}
+ 
+.image-modal {
+    width: 100% !important;
+    height: 100%;
+    top: 0 !important;
+    left: 0 !important;
+}
+ 
+.transparent {
+    background-color:rgba(126, 126, 126, 0.7);
+    
+}
+ 
+.fullscreen-image {
+    max-width: 100%;
+    max-height: 100%;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    overflow: auto;
+    position: fixed;
+    right: 0;
+    top: 0;
+}
+ 
+.slider {
+    width: 100%;
+    height: 100%;
+}
+//provisional
+
+.message {
+  font-size: 14px;
+}
+.message-wrapper {
+  position: relative;
+}
+
+.message-detail {
+  white-space: nowrap;
+  font-size: 14px;
+  white-space: normal;
+}
+
+.chat-bubble {
+  border-radius: 5px;
+  display: inline-block;
+  padding: 10px 18px;
+  position: relative;
+  margin: 10px;
+  max-width: 80%;
+}
+.chat-bubble.left {
+  background-color: #e6e5eb;
+  float: left;
+  margin-left: 15px;
+}
+.chat-bubble.right {
+  background-color: #158ffe;
+  color: #fff;
+  float: right;
+  margin-right: 15px;
+}
+.cf {
+  clear: both !important;
+}
