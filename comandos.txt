@@ -4,3 +4,4 @@ reiniciar el servidor : forever restartall
 ver log		      : forever logs server.js
 compilar              : cordova build --release android
 firmar                : jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore platforms/android/build/output/apk/android-release-unsigned.apk alias_name
+ver log telefono(conectado por usb: instalar drivers y añadirlos con el actualizador. Luego en consola : adb logcat
