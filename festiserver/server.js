@@ -54,7 +54,7 @@ var FestiSchema = new Schema({
 //var Festi = mongoose.model('Festi',FestiSchema);
 var UserSchema = new Schema({
     //El id vendra dado por la base de datos
-    //Podriamos añadir publicaciones y mensajes
+    //Podriamos aï¿½adir publicaciones y mensajes
     _id: Schema.Types.ObjectId,
     nick: String,
     photo: String,
@@ -72,7 +72,7 @@ var FestiDB = {
     }
 };
 var chatDB = {
-    getAll : function(festiyear,callback){ //festiyear: String festival y año
+    getAll : function(festiyear,callback){ //festiyear: String festival y aï¿½o
         mongoose.model('Chat',msSchema,'chat'+festiyear).find().exec(function(err,docs){
             callback(docs);
         });
@@ -176,6 +176,8 @@ io.on('connection', function (socket) {
   });
   //------------------ Market ------------------
   socket.on('new annonce',function(annonce){
+      console.log("annonce.id",annonce.creator_id);
+    annonce.creator_id = socket.id;
     marketDB.send(annonce,socket.room,function(){
         console.log("New annonce in the database");
         io.to(socket.room).emit('new annonce', annonce);
@@ -217,6 +219,7 @@ io.on('connection', function (socket) {
         numUsers++; 
         addedUser = true;
         socket.emit('add user',id);
+        console.log("id socket ", socket.id);
         console.log("New user register in the app , the number of users now is : ",numUsers);
     });
   });

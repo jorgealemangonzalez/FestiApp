@@ -205,8 +205,8 @@ angular.module('starter.controllers', [])//DESCARGAR LOS FICHEROS QUE COGE DE IN
     $scope.festi = $localStorage.currentfesti;
     $scope.id = $localStorage.user.id;
     $scope.notice_send = {
+      creator_id: "" ,
       location:{ },
-      id: $scope.id,
       images: [ ],
       title:"",
       description:"",
