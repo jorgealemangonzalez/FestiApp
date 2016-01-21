@@ -1,0 +1,36 @@
+<!-- Imagenes https://www.youtube.com/watch?v=XFPZ8Tj48SU -->
+<ion-view view-title="{{festi.festi}}">
+  <ion-content>
+    <div class="list list-inset">
+        <label class="item item-input">
+          <input type="text" placeholder="Titulo" ng-model="notice_send.title">
+        </label>
+        <label class="item item-input">
+          <textarea type="text" placeholder="Descripcion" ng-model="notice_send.description"></textarea>
+        </label>
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Tipo
+          </div>
+          <select ng-model="notice_send.type">
+            <option selected>Comida</option>
+            <option>Bebida</option>
+            <option>Tansporte</option>
+            <option>Supervivencia</option>
+          </select>
+        </label>
+        <div class="item item-icon-left text-center item-icon-right">
+            <i class="icon ion-images" ng-click="uploadfromlibrary()"></i>
+            Subir Foto
+           <i class="icon ion-camera" ng-click="uploadfromcamera()" ></i>       
+         </div>
+         <a class="item item-list-detail">
+             <ion-scroll direction="x">
+             <img style=" max-height: 100%;max-width: 100%" ng-repeat="image in notice_send.images" ng-src="data:image/jpeg;base64,{{image}}" ng-click="showImages($index,notice)" class="image-list-thumb"/>
+             </ion-scroll>
+         </a>
+    <div class="padding">
+      <button class="button button-block button-positive" ng-click="posMe();enviar()">Obtener posicion y enviar</button>
+    </div>
+  </ion-content>
+</ion-view>

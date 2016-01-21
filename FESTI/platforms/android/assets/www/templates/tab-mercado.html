@@ -1,0 +1,40 @@
+<ion-view view-title="{{festi.festi}}">
+  <ion-content>
+      <div class="row">
+        <div class="col col-80"> 
+            <label class="item item-input">
+                <i class="icon ion-search placeholder-icon "></i>
+                <input type="text" placeholder="Buscar">
+            </label>
+        </div>
+        <div class="col">
+            <button class="button icon ion-navicon" ng-click="open_options()"></button>
+        </div>         
+      </div>    
+      
+    <div class="list card" data-ng-repeat = "notice in notices "> <!-- filter : search -->
+            <ion-item class=" item-avatar item-icon-right" type="item-text-wrap"  ng-click="changeOpen($index)">
+                <img ng-src="./img/{{notice.type}}.png">
+                <h2>{{notice.title}}</h2>
+                <p ng-show="!notice.open">{{notice.description}}</p>
+                <i class="icon ion-information-circled icon-accessory" ng-show="!notice.open" ></i>
+            </ion-item>
+            <div ng-show="notice.open">
+                <div class="item item-text-wrap">
+                  {{notice.description}}
+                </div>
+                <a class="item item-list-detail">
+                    <ion-scroll direction="x">
+                    <img style=" max-height: 100%;max-width: 100%" ng-repeat="image in notice.images" ng-src="data:image/jpeg;base64,{{image}}" ng-click="showImages($index)" class="image-list-thumb"/>
+                    </ion-scroll>
+                </a>
+                <div class="button-bar">
+                    <a class="button button-assertive" ng-click="changeOpen($index)">Cerrar</a>
+                    <a class="button button-balanced" ng-click="goMap(notice.location)">Mapa</a>
+                </div>
+            </div>
+    </div>
+
+
+  </ion-content>
+</ion-view>

@@ -1,0 +1,21 @@
+<ion-tabs class="tabs-icon-top tabs-color-active-positive" ng-controller="tabsfestiCtrl">
+  <a class="button button-icon icon ion-arrow-left-c" ng-click="exit()"></a>
+
+  <ion-tab title="FestiChat" icon-off="ion-chatboxes" icon-on="ion-chatboxes" href="#/tab_festi/chat_festi">
+    <ion-nav-view name="tab-chat_festi"></ion-nav-view>
+  </ion-tab>
+
+
+  <ion-tab title="Cerca" icon-off="ion-ios-navigate" icon-on="ion-ios-navigate" href="#/tab_festi/cerca/" >
+    <ion-nav-view name="tab-cerca" ></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="Badulake" icon-off="ion-bag" icon-on="ion-bag" href="#/tab_festi/mercado">
+    <ion-nav-view name="tab-mercado"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="Eventos" icon-off="ion-nuclear" icon-on="ion-nuclear" href="#/tab_festi/eventos">
+    <ion-nav-view name="tab-eventos"></ion-nav-view>
+  </ion-tab>
+
+</ion-tabs>

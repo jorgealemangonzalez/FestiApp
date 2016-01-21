@@ -1,0 +1,31 @@
+<ion-view view-title="Añadir festival">
+  <ion-content>
+    <ion-list >
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="Buscar festival" ng-model="busqueda">
+      </label>
+      <button class="button  button-full button-positive" ng-click="changefiltrado()" style="margin-top:0px;margin-bottom:0px;">
+        Avanzado
+      </button>
+      <div ng-show="filtrado">
+        <li class="item item-toggle" ng-repeat="estilo in estilos">
+          {{estilo.nombre}}
+          <label class="toggle toggle-passive">
+            <input type="checkbox" ng-model="estilo.on">
+            <div class="track">
+              <div class="handle"></div>
+            </div>
+          </label>
+        </li>
+      </div>
+
+      <ion-item class="item-avatar item-icon-right" ng-repeat="festival in festivales | filter:busqueda | filter: tengoestilo " type="item-text-wrap" ng-click="anadir(festival)">
+        <img ng-src="{{festival.link_icono}}">
+        <h2>{{festival.festi}}</h2>
+        <p>{{festival.fecha}}</p>
+        <i class="icon ion-plus-round icon-accessory" ></i>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
