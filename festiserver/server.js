@@ -176,7 +176,6 @@ io.on('connection', function (socket) {
   });
   //------------------ Market ------------------
   socket.on('new annonce',function(annonce){
-      console.log("annonce.id",annonce.creator_id);
     annonce.creator_id = socket.id;
     marketDB.send(annonce,socket.room,function(){
         console.log("New annonce in the database");
@@ -219,7 +218,6 @@ io.on('connection', function (socket) {
         numUsers++; 
         addedUser = true;
         socket.emit('add user',id);
-        console.log("id socket ", socket.id);
         console.log("New user register in the app , the number of users now is : ",numUsers);
     });
   });

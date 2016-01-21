@@ -114,6 +114,22 @@ angular.module('starter.controllers', [])//DESCARGAR LOS FICHEROS QUE COGE DE IN
 
   $scope.festivales = Festivales.all();
 })
+.filter('tengoestilo', function($localStorage){
+  return function (arr) {
+      return arr.filter(function(notice,index){
+          if( !$localStorage.filtrado_notice){
+              return true;
+          }else {
+            if(notice.creator_id == $localStorage.user.id){
+                return true;
+            }else{
+                return false;
+            }
+        }
+          
+      })
+  };
+})
 .controller('configuracionCtrl', function($scope,$localStorage) {
     $scope.festi = $localStorage.currentfesti;
     if($localStorage.user != null){

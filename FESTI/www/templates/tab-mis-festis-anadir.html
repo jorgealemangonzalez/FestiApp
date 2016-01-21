@@ -20,7 +20,7 @@
         </li>
       </div>
 
-      <ion-item class="item-avatar item-icon-right" ng-repeat="festival in festivales | filter:busqueda | filter: tengoestilo " type="item-text-wrap" ng-click="anadir(festival)">
+      <ion-item class="item-avatar item-icon-right" ng-repeat="festival in festivales | tengoestilo | filter:busqueda " type="item-text-wrap" ng-click="anadir(festival)">
         <img ng-src="{{festival.link_icono}}">
         <h2>{{festival.festi}}</h2>
         <p>{{festival.fecha}}</p>
