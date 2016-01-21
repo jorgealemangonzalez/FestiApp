@@ -64,7 +64,7 @@ angular.module('starter.controllers', [])//DESCARGAR LOS FICHEROS QUE COGE DE IN
 
 //UNA VEZ AÑADIDO EL FESTIVAL se guardan los datos en localStorage y habrá que ir recargandolos
 //LOS PLUGINS SE AÑADEN CON CORDOVA --> "CORDOVA PLUGIN ADD .. "
-.controller('mis-festis-anadirCtrl', function($scope,Festivales,Estilos_musicales,$state,$ionicLoading,$localStorage,$window) {
+.controller('mis-festis-anadirCtrl', function($scope,Festivales,$rootScope,Estilos_musicales,$state,$ionicLoading,$localStorage,$window) {
   $scope.festi = $localStorage.currentfesti;
   $scope.recien = true;
   /*
@@ -75,8 +75,8 @@ angular.module('starter.controllers', [])//DESCARGAR LOS FICHEROS QUE COGE DE IN
 
   $scope.estilos = Estilos_musicales ;
   //hacer que se abra el menu de filtro avanzado
-  $scope.filtrado = false;
-  $scope.changefiltrado = function(){ $scope.filtrado = !$scope.filtrado ;};
+  $rootScope.filtrado = false;
+  $scope.changefiltrado = function(){ $rootScope.filtrado = !$rootScope.filtrado ;};
   var esta = function(peq,gran){
     for(i in gran){
       if(peq._id.$oid == gran[i]._id.$oid)
@@ -86,7 +86,7 @@ angular.module('starter.controllers', [])//DESCARGAR LOS FICHEROS QUE COGE DE IN
     }
     return false;
   }
-  $scope.tengoestilo = function(festi){
+  /*$scope.tengoestilo = function(festi){
     for(e in $scope.estilos){
       var es = $scope.estilos[e];
       if(es.on && festi.estilos.indexOf(es.nombre) > -1 && !esta(festi,$localStorage.f)){
@@ -104,7 +104,7 @@ angular.module('starter.controllers', [])//DESCARGAR LOS FICHEROS QUE COGE DE IN
       //$scope.loading.hide();
     }
 
-  };
+  };*/
   $scope.anadir = function(festi){
     
     $localStorage.f.unshift(festi);
@@ -114,18 +114,23 @@ angular.module('starter.controllers', [])//DESCARGAR LOS FICHEROS QUE COGE DE IN
 
   $scope.festivales = Festivales.all();
 })
-.filter('tengoestilo', function($localStorage){
+.filter('tengoestilo', function($localStorage,Estilos_musicales,$scope,$rootScope){
   return function (arr) {
-      return arr.filter(function(notice,index){
-          if( !$localStorage.filtrado_notice){
-              return true;
-          }else {
-            if(notice.creator_id == $localStorage.user.id){
-                return true;
-            }else{
-                return false;
-            }
-        }
+      return arr.filter(function(festi){
+          $scope.estilos = Estilos_musicales ;
+          for( e in $scope.estilos){
+              var es = $scope.estilo[e];
+              console.log($localStorage.f.indexOf(festi));
+              if(es.on && festi.estilos.indexOf(es.nombre)> -1 && $localStorage.f.indexOf(festi))
+              {
+                  if($rootScope.recien == true)
+                   {
+                     $rootScope.recien = false;
+                     //$scope.loading.hide();
+                    }
+                   return true;
+              }
+          }
           
       })
   };

@@ -99,13 +99,12 @@ angular.module('starter.controllerjorge', [])
 .controller('mercadoCtrl', function($scope,$localStorage,$location,$ionicModal,$rootScope,$state,socket) {
     $scope.festi = $localStorage.currentfesti;
     $scope.notices = $rootScope.notices;
-    console.log($scope.notices);
     $scope.changeOpen = function(index){
         $scope.notice = $scope.notices[index];
         if($scope.notice.images == null){
-            console.log("n");
+            //console.log("n");
             
-            console.log($scope.notice);
+            //console.log($scope.notice);
             socket.emit('get market images',$scope.notice._id);
             socket.on('get market images',function(images){
                 $scope.notice.images = images; 
@@ -149,33 +148,26 @@ angular.module('starter.controllerjorge', [])
         
     };
     $scope.filtrado = false;
-    $localStorage.filtrado_notice = false;
+    $scope.filtrado_notice = false;
     $scope.changefiltrado = function(){ $scope.filtrado = !$scope.filtrado ;};
     
     $scope.anadir = function(){
         $state.go('tab_festi.mercado_anadir');
     };
-    $scope.mostrartodos = function(){
-        $localStorage.filtrado_notice = false;
-    }
     $scope.mynotice = function(){
-        $localStorage.filtrado_notice = true;
+        $scope.filtrado_notice = !$scope.filtrado_notice;
     };
     
 })
 .filter('ownnotice', function($localStorage){
-  return function (arr) {
-      return arr.filter(function(notice,index){
-          if( !$localStorage.filtrado_notice){
-              return true;
-          }else {
+  return function (arr,filt) {
+      return arr.filter(function(notice){
+            if(!filt) return true;
             if(notice.creator_id == $localStorage.user.id){
                 return true;
             }else{
                 return false;
             }
-        }
-          
-      })
+        })
   };
 });

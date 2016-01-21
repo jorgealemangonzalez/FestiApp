@@ -15,11 +15,15 @@
                 Añadir
             </a>   
             <a class="button button-block button-stable" ng-click="mynotice()" > 
-                Mis anuncios
+                
+                <div ng-if="filtrado_notice">
+                    Mostrar todos
+                </div>
+                <div ng-if="!filtrado_notice">
+                    Mis anuncios
+                </div>
             </a>   
-            <a class="button button-block button-stable" ng-click="mostrartodos()"> 
-                Mostrar todos
-            </a>   
+             
             
             
             
